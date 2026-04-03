@@ -3,91 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agendamento</title>
+    <title>Cabeleleila Leila: Agendamento</title>
     <link rel="stylesheet" href="../../assets/css/form.css">
 </head>
 <body>
     <div id="agendar" class="conteudoTab active">
         <div class="formWrapper">
             <form class="formCard" method="post">
+                    <fieldset <%= isEdit == 0 ? 'disabled' : '' %>>
 
-                <h2>Agendar Serviço</h2>
+                    <h2><%= isEdit == 0 ? 'Ver Agendamento' : 'Editar Agendamento' %></h2>
 
-                <div class="secaoServicos">
-                    <p class="tituloSecao">Serviços desejados</p>
+                    <div class="secaoServicos">
+                        <p class="tituloSecao">Serviços desejados</p>
 
-                    <label class="checkboxItem">
-                        <input type="checkbox" name="servicos" value="depilacao"
-                        <%= infoVelha.servicos.includes('depilacao') ? 'checked' : '' %>>
-                        <span>Depilação - R$50</span>
-                    </label>
+                        <label class="checkboxItem">
+                            <input type="checkbox" name="servicos" value="depilacao"
+                            <%= infoVelha.servicos.includes('depilacao') ? 'checked' : '' %>>
+                            <span>Depilação - R$50</span>
+                        </label>
 
-                    <label class="checkboxItem">
-                        <input type="checkbox" name="servicos" value="corte"
-                        <%= infoVelha.servicos.includes('corte') ? 'checked' : '' %>>
-                        <span>Corte de Cabelo - R$30</span>
-                    </label>
+                        <label class="checkboxItem">
+                            <input type="checkbox" name="servicos" value="corte"
+                            <%= infoVelha.servicos.includes('corte') ? 'checked' : '' %>>
+                            <span>Corte de Cabelo - R$30</span>
+                        </label>
 
-                    <label class="checkboxItem">
-                        <input type="checkbox" name="servicos" value="luzes"
-                        <%= infoVelha.servicos.includes('luzes') ? 'checked' : '' %>>
-                        <span>Luzes - R$80</span>
-                    </label>
+                        <label class="checkboxItem">
+                            <input type="checkbox" name="servicos" value="luzes"
+                            <%= infoVelha.servicos.includes('luzes') ? 'checked' : '' %>>
+                            <span>Luzes - R$80</span>
+                        </label>
 
-                    <label class="checkboxItem">
-                        <input type="checkbox" name="servicos" value="manicure"
-                        <%= infoVelha.servicos.includes('manicure') ? 'checked' : '' %>>
-                        <span>Manicure - R$30</span>
-                    </label>
+                        <label class="checkboxItem">
+                            <input type="checkbox" name="servicos" value="manicure"
+                            <%= infoVelha.servicos.includes('manicure') ? 'checked' : '' %>>
+                            <span>Manicure - R$30</span>
+                        </label>
 
-                    <label class="checkboxItem">
-                        <input type="checkbox" name="servicos" value="pedicure"
-                        <%= infoVelha.servicos.includes('pedicure') ? 'checked' : '' %>>
-                        <span>Pedicure - R$50</span>
-                    </label>
-                </div>
+                        <label class="checkboxItem">
+                            <input type="checkbox" name="servicos" value="pedicure"
+                            <%= infoVelha.servicos.includes('pedicure') ? 'checked' : '' %>>
+                            <span>Pedicure - R$50</span>
+                        </label>
+                    </div>
 
-                <div class="campo">
-                    <label>Dia desejado</label>
-                    <input 
-                        type="date" 
-                        name="data"
-                        min="<%= (() => { 
-                            const d = new Date(); 
-                            d.setDate(d.getDate() + 2); 
-                            return d.toLocaleDateString('en-CA'); 
-                        })() %>"
-                        value="<%= infoVelha.dia.toISOString().split('T')[0] %>"
-                    >
-                </div>
+                    <div class="campo">
+                        <label>Dia desejado</label>
+                        <input 
+                            type="date" 
+                            name="data"
+                            min="<%= (() => { 
+                                const d = new Date(); 
+                                d.setDate(d.getDate() + 2); 
+                                return d.toLocaleDateString('en-CA'); 
+                            })() %>"
+                            value="<%= infoVelha.dia.toISOString().split('T')[0] %>"
+                        >
+                    </div>
 
-                <div class="campo">
-                    <label>Horário desejado</label>
-                    <select name="horario">
-                        <option value="08:30" <%= infoVelha.horario === '08:30:00' ? 'selected' : '' %>>08:30</option>
-                        <option value="10:00" <%= infoVelha.horario === '10:00:00' ? 'selected' : '' %>>10:00</option>
-                        <option value="12:30" <%= infoVelha.horario === '12:30:00' ? 'selected' : '' %>>12:30</option>
-                        <option value="14:00" <%= infoVelha.horario === '14:00:00' ? 'selected' : '' %>>14:00</option>
-                        <option value="15:30" <%= infoVelha.horario === '15:30:00' ? 'selected' : '' %>>15:30</option>
-                        <option value="17:00" <%= infoVelha.horario === '17:00:00' ? 'selected' : '' %>>17:00</option>
-                    </select>
-                </div>
+                    <div class="campo">
+                        <label>Horário desejado</label>
+                        <select name="horario">
+                            <option value="08:30" <%= infoVelha.horario === '08:30:00' ? 'selected' : '' %>>08:30</option>
+                            <option value="10:00" <%= infoVelha.horario === '10:00:00' ? 'selected' : '' %>>10:00</option>
+                            <option value="12:30" <%= infoVelha.horario === '12:30:00' ? 'selected' : '' %>>12:30</option>
+                            <option value="14:00" <%= infoVelha.horario === '14:00:00' ? 'selected' : '' %>>14:00</option>
+                            <option value="15:30" <%= infoVelha.horario === '15:30:00' ? 'selected' : '' %>>15:30</option>
+                            <option value="17:00" <%= infoVelha.horario === '17:00:00' ? 'selected' : '' %>>17:00</option>
+                        </select>
+                    </div>
 
-                <div class="campo">
-                    <label>Observações</label>
-                    <textarea class="campo obs" name="observacoes" maxlength="190" placeholder="Observações..."><%= infoVelha.observacoes %></textarea>
-                </div>
+                    <div class="campo">
+                        <label>Observações</label>
+                        <textarea class="campo obs" name="observacoes" maxlength="190" placeholder="Observações..."><%= infoVelha.observacoes %></textarea>
+                    </div>
 
-                <div class="botoes">
+                </fieldset>
+                    <div class="botoes">
 
-                    <button type="button" id="btnVoltar" class="btnSubmit"><- Voltar</button>
+                        <button type="button" id="btnVoltar" class="btnSubmit"><- Voltar</button>
 
-                    <% if(isEdit == true) { %>
-                        <button type="submit" class="btnSubmit">Agendar</button>
-                    <% } %>
-                </div>
+                        <% if(isEdit == true) { %>
+                            <button type="submit" class="btnSubmit">Salvar</button>
+                        <% } %>
+                    </div>
 
-            </form>
+                </form>
         </div>
     </div>
     <script>

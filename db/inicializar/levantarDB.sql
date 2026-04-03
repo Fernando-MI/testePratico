@@ -1,4 +1,5 @@
 USE testePraticoDsin;
+
 CREATE TABLE usuarios(
   uid INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
   nome VARCHAR(50) NOT NULL,
@@ -8,6 +9,7 @@ CREATE TABLE usuarios(
 
 INSERT INTO usuarios(nome, email, senha) VALUE ("Leila", "leila@email.com", "!Trocar123");
 INSERT INTO usuarios(nome, email, senha) VALUE ("Ana", "ana@email.com", "senhaAna123@");
+INSERT INTO usuarios(nome, email, senha) VALUE ("Marcia", "marcia@email.com", "senhaMarcia123@");
 
 CREATE TABLE agendamentos(
   -- aaid = AGENDAMENTO AGENDAMENTO ID
@@ -21,8 +23,6 @@ CREATE TABLE agendamentos(
   CONSTRAINT fk_agendamento_usuario FOREIGN KEY (auid) REFERENCES usuarios (uid)
 );
 
-CREATE TABLE sessions (
-  session_id VARCHAR(128) PRIMARY KEY,
-  expires int NOT NULL,
-  info VARCHAR(300)
-)
+INSERT INTO agendamentos(servicos, dia, horario, auid) VALUE("depilacao-corte", "2026-04-3", "12:30", 2);
+INSERT INTO agendamentos(servicos, dia, horario, auid) VALUE("depilacao-corte", "2026-04-12", "12:30", 2);
+INSERT INTO agendamentos(servicos, dia, horario, auid) VALUE("luzes-pedicure", "2026-04-13", "12:30", 3);
