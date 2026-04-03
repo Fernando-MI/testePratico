@@ -1,0 +1,97 @@
+:root{
+    --accentColor: #eed231;
+    --baseColor: #ffffff;
+    --textColor: #000000;
+    --matteColor: #fffbc0;
+    --errorColor: #ff6464;
+}
+
+body{
+  background-color: var(--matteColor);
+}
+
+/* FORMULARIO DE AGENDAMENTO */
+
+.formWrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.formCard {
+  background:  var(--baseColor);
+  padding: 25px;
+  border-radius: 12px;
+  width: 320px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  font-family: Arial, sans-serif;
+}
+
+.formCard h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.tituloSecao {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.checkboxItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+  cursor: pointer;
+}
+
+.checkboxItem input {
+  accent-color: var(--accentColor);
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  margin-top: 15px;
+}
+
+.obs{
+    resize: none;
+}
+
+.campo input,
+.campo select {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid var(--textColor);
+  margin-top: 5px;
+}
+
+.botoes{
+  display: flex;
+  flex-direction: row;
+  padding: 0 8px 8px 0;
+  gap: 12px;
+}
+
+.btnSubmit {
+  margin-top: 20px;
+  width: 100%;
+  padding: 10px;
+  border: none;
+  background: var(--accentColor);
+  color: var(--baseColor);
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#btnVoltar{
+  background-color: var(--errorColor);
+}
+
+.btnSubmit:hover {
+  transform: scale(1.1);
+}
+

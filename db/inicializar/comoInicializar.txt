@@ -1,0 +1,15 @@
+Para inicializar o banco de dados iremos utilizar o docker
+assim nao precisa baixar e configurar MySQL
+
+docker run --name dbTestePraticoInit \
+  -e MYSQL_ROOT_PASSWORD=1234 \
+  -e MYSQL_DATABASE=testePraticoDsin \
+  -v caminho/do/projeto/leila/db/inicializar:/docker-entrypoint-initdb.d:ro \
+  -p 3306:3306 \
+  -d mysql:9.6
+
+
+Esse comando ira rodar um container com mysql, senha 1234 e expor a porta 3306 para o sistema
+alem disso esse vai rodar o arquivo levantarDB.sql
+
+NOTA IMPORTANTE: Substituir o caminho "caminho/do/projeto/" para que o docker consiga achar a pasta certa

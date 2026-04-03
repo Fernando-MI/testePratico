@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="assets/css/home.css">
+    <link rel="stylesheet" href="assets/css/form.css">
+</head>
+<body>
+    <div class="header">
+        <aside>
+            <a href="" class="logo">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#00041c"><path d="M480-80 120-436l200-244h320l200 244L480-80ZM183-680l-85-85 57-56 85 85-57 56Zm257-80v-120h80v120h-80Zm335 80-57-57 85-85 57 57-85 85ZM480-192l210-208H270l210 208ZM358-600l-99 120h442l-99-120H358Z"/></svg>
+            </a>
+            <ul class="navList">
+                <li>
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg>
+                    <span class="navItem" id="menuDash"><p>Dashboard</p></span>
+                </li>
+                <li>
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M680-80v-120H560v-80h120v-120h80v120h120v80H760v120h-80Zm-480-80q-33 0-56.5-23.5T120-240v-480q0-33 23.5-56.5T200-800h40v-80h80v80h240v-80h80v80h40q33 0 56.5 23.5T760-720v244q-20-3-40-3t-40 3v-84H200v320h280q0 20 3 40t11 40H200Zm0-480h480v-80H200v80Zm0 0v-80 80Z"/></svg>
+                    <span class="navItem" id="menuAgendar"><p>+ Agendar</p></span>
+                </li>
+                <li>
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M480-120v-80h280v-560H480v-80h280q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H480Zm-80-160-55-58 102-102H120v-80h327L345-622l55-58 200 200-200 200Z"/></svg>
+                    <a class="navItem" href="/logout"><p>Sair</p></a>
+                </li>
+                <div class="active"></div>
+            </ul>
+        </aside>
+        <div id="conteudoTabs">
+            <div id="dashboard" class="conteudoTab activeTab">
+                <% if (listaAgendamento && listaAgendamento.length > 0) { let hoje = new Date() %>
+
+                    <% listaAgendamento.forEach(a => { if(a.dia > hoje - 172800000) {  %>
+                        <div class="cardAgendamento">
+                            <div class="cardHeader">
+                                <h3><%= a.nome %></h3>
+                                <span class="btnEdit"><a class="<%= (a.dia < hoje.getTime() + 172800000) ? 'disabledEdit' : '' %>" href="/agendamento/<%= a.aaid %>/1">Editar</a> <a href="/agendamento/<%= a.aaid %>/0">Ver</a></span>
+                            </div>
+
+                            <div class="cardBody">
+                                <div class="info">
+                                    <span>Dia: </span>
+                                    <p><%= a.dia.toLocaleDateString('pt-BR') %></p>
+                                </div>
+
+                                <div class="info">
+                                    <span>Horario </span>
+                                    <p><%= a.horario %></p>
+                                </div>
+                            </div>
+                        </div>
+                    <% } }) %>
+
+                <% } else { %>
+                    <p>Nenhum agendamento encontrado.</p>
+                <% } %>
+            </div>
+
+
+            <div id="agendar" class="conteudoTab">
+                <div class="formWrapper">
+                    <form class="formCard" method="post">
+
+                        <h2>Agendar Serviço</h2>
+
+                        <div class="secaoServicos">
+                            <p class="tituloSecao">Serviços desejados</p>
+
+                            <label class="checkboxItem">
+                            <input type="checkbox" name="servicos" value="depilacao">
+                            <span>Depilação - R$50</span>
+                            </label>
+
+                            <label class="checkboxItem">
+                            <input type="checkbox" name="servicos" value="corte">
+                            <span>Corte de Cabelo - R$30</span>
+                            </label>
+
+                            <label class="checkboxItem">
+                            <input type="checkbox" name="servicos" value="luzes">
+                            <span>Luzes - R$80</span>
+                            </label>
+
+
+                            <label class="checkboxItem">
+                            <input type="checkbox" name="servicos" value="Manicure">
+                            <span>Manicure - R$30</span>
+                            </label>
+
+                            <label class="checkboxItem">
+                            <input type="checkbox" name="servicos" value="Pedicure">
+                            <span>Pedicure - R$50</span>
+                            </label>
+                        </div>
+
+                        <div class="campo">
+                            <label>Dia desejado</label>
+                            <input 
+                            type="date" 
+                            min="<%= (() => { 
+                            const d = new Date(); 
+                            d.setDate(d.getDate() + 2); 
+                            return d.toLocaleDateString('en-CA'); 
+                            })() %>"
+                            name="data"
+                            >
+                        </div>
+
+                        <div class="campo">
+                            <label>Horário desejado</label>
+                            <select name="horario">
+                            <option>08:30</option>
+                            <option>10:00</option>
+                            <option>12:30</option>
+                            <option>14:00</option>
+                            <option>15:30</option>
+                            <option>17:00</option>
+                            </select>
+                        </div>
+
+                        <div class="campo">
+                            <label>Observações</label>
+                            <textarea class="campo obs" name="observacoes" maxlength="190" placeholder="Observações..."></textarea>
+                        </div>
+
+                        <button type="submit" class="btnSubmit">Agendar</button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const btnDashboard = document.getElementById("menuDash");
+        const btnAgendar = document.getElementById("menuAgendar");
+
+        const conteudos = document.querySelectorAll(".conteudoTab");
+
+        btnDashboard.addEventListener("click", () => {
+            conteudos.forEach(c => c.classList.remove('activeTab'));
+            document.getElementById("dashboard").classList.add('activeTab');
+        });
+
+        btnAgendar.addEventListener("click", () => {
+            conteudos.forEach(c => c.classList.remove('activeTab'));
+            document.getElementById("agendar").classList.add('activeTab');
+        });
+    </script>
+</body>
+</html>
