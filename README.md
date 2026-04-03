@@ -39,7 +39,7 @@ Agora vamos criar o banco de dados utilizando docker, para isso basta ter o dock
 docker run --name dbTestePraticoInit \
   -e MYSQL_ROOT_PASSWORD=1234 \
   -e MYSQL_DATABASE=testePraticoDsin \
-  -v caminho/do/projeto/leila/db/inicializar:/docker-entrypoint-initdb.d:ro \
+  -v caminho/do/projeto/testePratico-main/db/inicializar:/docker-entrypoint-initdb.d:ro \
   -p 3306:3306 \
   -d mysql:9.6
 ```
